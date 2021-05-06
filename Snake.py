@@ -2,6 +2,10 @@ from turtle import *
 from random import randrange
 from freegames import square, vector
 
+#Codigo modificado por:
+# Autor: Yahir Cortes
+# Autor: Fabrizio Gonzalez
+
 food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
@@ -55,21 +59,21 @@ def move():
         return
 
     snake.append(head)
-    
-    if head == food:                
+
+    if head == food:
         print('Snake:', len(snake))
         food.x = randrange(-15, 15) * 10
         food.y = randrange(-15, 15) * 10
     else:
 #  Mueve la comida a posiciones aleatorias dentro de la pantalla
-        if inside(food): 
+        if inside(food):
             snake.pop(0)
             food.x += randrange(-1, 2) * 10
             food.y += randrange(-1, 2) * 10
         if not inside(food):
             food.x = randrange(-15, 15) * 10
             food.y = randrange(-15, 15) * 10
-        
+
     clear()
 
     for body in snake:
@@ -80,7 +84,7 @@ def move():
     square(food.x, food.y, 9, color_food(color_food_num))
     update()
     ontimer(move, 100)
-    
+
 setup(420, 420, 370, 0)
 hideturtle()
 tracer(False)
