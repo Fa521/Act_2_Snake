@@ -5,6 +5,35 @@ from freegames import square, vector
 food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
+# Se crean 2 numeros aleatorias de 1 a 5
+color_snake_num = randrange(1,6)
+color_food_num = randrange(1,6)
+
+def color_snake(color_snake_num):
+    """
+    [Con un switch statement se regresa el color de la serpiente dependiendo del numero aleatorio]
+    parameter color_snake_num: [numero aleatorio que decide el color]
+    """
+    switcher={
+        1:'maroon',
+        2:'violet',
+        3:'magenta',
+        4:'navy',
+        5:'black'}
+    return switcher.get(color_snake_num,"")
+
+def color_food(color_food_num):
+    """
+    [Con un switch statement se regresa el color de la comida dependiendo del numero aleatorio]
+    parameter color_food_num: [numero aleatorio que decide el color]
+    """
+    switcher={
+        1:'yellow',
+        2:'gold',
+        3:'gray',
+        4:'blue',
+        5:'lightgreen'}
+    return switcher.get(color_food_num,"")
 
 def change(x, y):
     "Change snake direction."
@@ -44,9 +73,11 @@ def move():
     clear()
 
     for body in snake:
-        square(body.x, body.y, 9, 'black')
+        # Se llama a la funcion para obtener el string del color
+        square(body.x, body.y, 9, color_snake(color_snake_num))
 
-    square(food.x, food.y, 9, 'green')
+    # Se llama a la funcion para obtener el string del color
+    square(food.x, food.y, 9, color_food(color_food_num))
     update()
     ontimer(move, 100)
     
